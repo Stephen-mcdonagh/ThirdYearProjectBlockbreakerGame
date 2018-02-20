@@ -1,0 +1,164 @@
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import javax.swing.Timer;
+
+
+import javax.swing.JPanel;
+//HELLO there!!!!
+@SuppressWarnings("serial")
+public class Game extends JPanel implements KeyListener,ActionListener,MouseListener
+{
+	
+	//private int numOfBricks = 21;
+	public static boolean running = false;  //play
+	public static Player player = new Player();  //To be removed
+	
+	public static int score1 = 0;
+	public static int lives = 3;
+	public static int numOfBalls = 1; 
+	
+	public static Timer timer;
+	public static int levelOneTotalBlocks = 28;
+	
+	public static int gameDifficulty;
+	public static int gameScore = 0 ;
+	
+	public static enum STATE
+	{
+		HOME,
+		DIFFICULTY,
+		HOWTOPLAY,
+		LEVEL1,
+		LEVEL2
+	};
+	
+	public static STATE myState = STATE.HOME;
+	
+	public Game()
+	{
+		new Block(4,7); //TODO: THINK problem with next level is because of this, how to fix ?
+		
+		addKeyListener(this);
+		addMouseListener(this);
+		setFocusable(true);
+		
+		if(isRunning())
+		{
+			timer = new Timer(gameDifficulty,this);
+			timer.start();
+		}		
+	}
+	
+	//Put objects onto screen
+	public void paint(Graphics g)
+	{
+		if(myState == STATE.HOME)
+		{
+			Screen.renderHome(g);
+			repaint();
+		}
+		if(myState == STATE.HOWTOPLAY)
+		{
+			
+			Screen.renderHowToPlay(g);
+			repaint();
+		}
+		else if(myState == STATE.DIFFICULTY)
+		{
+			Screen.renderDifficulty(g);
+			repaint();
+		}
+		else if(myState == STATE.LEVEL1)
+		{
+			Screen.renderLevelOne(g);
+			repaint();	
+		}
+		else if(myState ==STATE.LEVEL2)
+		{
+			Screen.renderLevelTwo(g);
+			repaint();
+		}
+	}
+	
+	public boolean isRunning()
+	{
+		return running;
+	}
+	
+	public static void setRunning(boolean isRunning)
+	{
+		running = isRunning;
+	}
+
+	public void actionPerformed(ActionEvent e)
+	{
+		if(myState == STATE.LEVEL1)
+		{
+			KeyInput.actionPerformed();
+		}
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e)
+	{
+		if(myState == STATE.LEVEL1 || myState == STATE.HOWTOPLAY || myState == STATE.DIFFICULTY)
+		{
+			KeyInput.keyPressed(e);
+		}
+	}
+	
+	@Override
+	//had to create new method as was "skipping" state difficulty 
+	public void mousePressed(MouseEvent e) 
+	{
+		if(myState == STATE.HOME)
+		{
+			MouseInput.mousePressedHome(e);	
+		}
+		else if(myState == STATE.DIFFICULTY)
+		{
+			MouseInput.mousePressedDifficulty(e);	
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e)
+	{                       
+		//KeyInput.keyReleased(e);
+	}
+	
+	@Override
+	public void keyTyped(KeyEvent e)
+	{
+		// TODO Auto-generated method stub	
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) 
+	{
+		// TODO Auto-generated method stub	
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) 
+	{
+		// TODO Auto-generated method stub		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) 
+	{
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) 
+	{
+		// TODO Auto-generated method stub
+	}
+}
