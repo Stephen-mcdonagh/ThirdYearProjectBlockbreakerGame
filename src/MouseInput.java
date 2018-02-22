@@ -26,19 +26,19 @@ public class MouseInput
 			}
 		}
 		
-		//How to play pressed
+		//Help pressed
 		if (Game.myState == Game.STATE.HOME)
 		{
 			if (mouseX >= 260 && mouseX <= 260 +220)
 			{
 				if(mouseY >= 350 && mouseY <= 400)
 				{
-					Game.myState = Game.STATE.HOWTOPLAY;
+					Game.myState = Game.STATE.HELP;
 				}
 			}
 		}
 		
-		//TODO: need to continue this for high score and help sections
+		//TODO: need to continue this for high score sections
 	
 	}
 	public static void mousePressedDifficulty(MouseEvent e) 

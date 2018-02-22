@@ -18,20 +18,22 @@ public class Screen
 	public static Rectangle IntermediateButton = new Rectangle(260,250,220,50);
 	public static Rectangle HardButton = new Rectangle(260,350,220,50);
 	
-	private static BufferedImage image;
+	//private static BufferedImage image;
 	
-	/*public static void displayBackground()
+	/*public static BufferedImage displayBackground()
 	{
 		//TODO: fix problem - not working 
 		try 
 		{
-			image = ImageIO.read(new File("res/projectBackground.png"));
+			BufferedImage image = ImageIO.read(new File("res/projectBackground.png"));
 			System.out.println("image read");
+			return image;
 		} catch (IOException e) 
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return null;
 	}*/		
 	public static void renderHome(Graphics g)
 	{
@@ -39,6 +41,7 @@ public class Screen
 		g.setColor(Color.black);
 		g.fillRect(0, 0, 720, 600);
 		//displayBackground();
+		//BufferedImage image = displayBackground();
 		//g.drawImage(image, 720, 600, null);
 		
 		Font fnt0 = new Font("ariel",Font.BOLD,50);
@@ -110,23 +113,6 @@ public class Screen
 		g.setColor(Color.red);
 		g.drawString("Lives = " + Game.lives, 30, 30);
 		
-		
-		if(Ball.BallYPos > 560)
-		{
-			Game.lives = Game.lives -1 ;
-			
-			Ball.BallYDir = -Ball.BallYDir;
-			
-			//Game Over
-			g.setColor(Color.RED);
-			g.setFont(new Font("serif", Font.BOLD, 30));
-			g.drawString("Game Over!!, Score is " + Game.gameScore, 190, 300);
-			
-			//Restart
-			g.setFont(new Font("serif", Font.BOLD, 30));
-			g.drawString("Press Enter to restart", 190, 300);
-	
-		}
 		
 		g.dispose();		
 		Game.setRunning(true);

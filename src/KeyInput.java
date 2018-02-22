@@ -1,25 +1,30 @@
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class KeyInput
 {	
 	static Game game = new Game();
 	static Player player = new Player();
 
-	// move right or left for paddle
+	
 	public static void keyPressed(KeyEvent e) 
 	{
 		int key = e.getKeyCode();
-		if(Game.myState == Game.STATE.HOWTOPLAY || (Game.myState == Game.STATE.DIFFICULTY))
+		//allows user to go back if they want
+		if(Game.myState == Game.STATE.HELP || (Game.myState == Game.STATE.DIFFICULTY))
 		{
 			if(key == KeyEvent.VK_BACK_SPACE)
 			{
-				System.out.print("back pressed");
+				System.out.print("back pressed ");
 				Game.myState = Game.STATE.HOME;
 			}			
 		}
-	
-		if (Game.myState == Game.STATE.LEVEL1)
+		// move right or left for paddle
+		if (Game.myState == Game.STATE.LEVEL1 || Game.myState == Game.STATE.LEVEL2)
 		{
 			
 			if(key == KeyEvent.VK_RIGHT)
@@ -44,6 +49,8 @@ public class KeyInput
 					player.goLeft();
 				}
 			}
+			
+			
 			//Release new ball feature using B key ,
 			/*if(Game.score >200)
 			{
@@ -65,6 +72,7 @@ public class KeyInput
 		{
 			Ball.BallYDir = -Ball.BallYDir;
 		}
+		
 		 for(int i = 0; i < Block.blocks.length; i++)
 		{
 			for(int j = 0; j < Block.blocks[0].length; j++)
@@ -85,6 +93,7 @@ public class KeyInput
 					{
 						Block.setBrickValue(0, i, j);
 						Game.levelOneTotalBlocks--;
+						//different score depending on what the user chooses
 						if(MouseInput.difficultyChoice == 1)
 						{
 							Game.gameScore = Game.gameScore + Integer.parseInt(config.getProperty("easyScore"));
@@ -101,7 +110,7 @@ public class KeyInput
 
 						}
 					
-						if(Ball.BallXPos + 19 <= rect.x || Ball.BallYPos + 1 >= rect.x + rect.width)
+						if(Ball.BallXPos + 19 <= rect.x || Ball.BallXPos + 1 >= rect.x + rect.width)
 							Ball.BallXDir = -Ball.BallXDir;
 						else
 							Ball.BallYDir = -Ball.BallYDir;
@@ -112,62 +121,78 @@ public class KeyInput
 		}
 		Ball.BallXPos += Ball.BallXDir;
 		Ball.BallYPos += Ball.BallYDir;
-		//left boarder
+		//Bounce left boarder
 		if(Ball.BallXPos < 0)
 		{
 			Ball.BallXDir = -Ball.BallXDir;
 		}
-		//top
+		//Bounce top
 		if(Ball.BallYPos < 0)
 		{
 			Ball.BallYDir = -Ball.BallYDir;
 		}
-		//right
+		//Bounce right
 		if(Ball.BallXPos > 690)
 		{
 			Ball.BallXDir = -Ball.BallXDir;
 		}
-		//bottom
+		//bottom game should restart, player loses a life
 		if(Ball.BallYPos >550)
 		{
 			Ball.BallYDir = -Ball.BallYDir; // dont bounce back
 			Game.lives --;
 			//TODO: restart game, wait for user to press a button
-		}			
+		}
+		
+		//Go from level 1 to level 2 TODO: NOT WORKING 
+		if(Game.levelOneTotalBlocks == 25) // will be changed to 0 when working
+		{
+			System.out.println("time for level 2 ");
+			Game.myState = Game.STATE.LEVEL2;
+		}
+		
+		//Game over 
+		if(Game.lives ==0 )
+		{
+			//game.gameOver = true;
+			//game.setRunning(false);
+			//is there a new high score ?
+			//enter name 
+			//String userName = "sa";
+			//String password = "ergo.1234";
+
+			/*String url = "jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=blockbreaker;integratedSecurity=true";
+		
+			Connection conn = null;  
+		    Statement statement = null;  
+		    ResultSet rs = null;  
+			try 
+			{
+				Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+				conn = DriverManager.getConnection(url);
+				 
+				statement = conn.createStatement();
+		        String queryString = "insert into dbo.highscores (username, score) values ('stephen','100')";
+		        rs = statement.executeQuery(queryString);
+		         
+		        while (rs.next()) 
+		        {
+		           System.out.println(rs.getString(2));
+		        }
+			}  
+			catch(Exception ex)
+			{
+				ex.printStackTrace();
+			}
+			finally 
+			{  
+		        if (rs != null) try { rs.close(); } catch(Exception e) {}  
+		        if (statement != null) try { statement.close(); } catch(Exception e) {}  
+		        if (conn != null) try { conn.close(); } catch(Exception e) {}  
+		    }  */
+			System.exit(0);
+		}
 	}
 
-	/*public static void keyReleased(KeyEvent e) 
-	{
-		if(Game.running=true) 
-		{
-			int key = e.getKeyCode();
-			if(key == KeyEvent.VK_SPACE)
-			{
-				while(Game.running)
-				{
-					if(new Rectangle(Ball.BallXPos,Ball.BallYPos,20,20).intersects(new Rectangle(Player.PlayerXPos,550,100,8)))
-					{
-						Ball.BallYDir = -Ball.BallYDir;
-					}
-					Ball.BallXPos += Ball.BallXDir;
-					Ball.BallYPos += Ball.BallYDir;
-					//left boarder
-					if(Ball.BallXPos < 0)
-					{
-						Ball.BallXDir = -Ball.BallXDir;
-					}
-					//top
-					if(Ball.BallYPos < 0)
-					{
-						Ball.BallYDir = -Ball.BallYDir;
-					}
-					//right
-					if(Ball.BallXPos > 700)
-					{
-						Ball.BallXDir = -Ball.BallXDir;
-					}
-				}
-			}
-		}
-	}*/
+
 }

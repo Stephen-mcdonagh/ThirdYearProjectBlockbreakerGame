@@ -28,11 +28,13 @@ public class Game extends JPanel implements KeyListener,ActionListener,MouseList
 	public static int gameDifficulty;
 	public static int gameScore = 0 ;
 	
+	public boolean gameOver = false;
+	
 	public static enum STATE
 	{
 		HOME,
 		DIFFICULTY,
-		HOWTOPLAY,
+		HELP,
 		LEVEL1,
 		LEVEL2
 	};
@@ -41,8 +43,7 @@ public class Game extends JPanel implements KeyListener,ActionListener,MouseList
 	
 	public Game()
 	{
-		new Block(4,7); //TODO: THINK problem with next level is because of this, how to fix ?
-		
+		new Block(4,7); //TODO: THINK problem with next level is because of this, how to fix ?	
 		addKeyListener(this);
 		addMouseListener(this);
 		setFocusable(true);
@@ -62,7 +63,7 @@ public class Game extends JPanel implements KeyListener,ActionListener,MouseList
 			Screen.renderHome(g);
 			repaint();
 		}
-		if(myState == STATE.HOWTOPLAY)
+		else if(myState == STATE.HELP)
 		{
 			
 			Screen.renderHowToPlay(g);
@@ -97,7 +98,7 @@ public class Game extends JPanel implements KeyListener,ActionListener,MouseList
 
 	public void actionPerformed(ActionEvent e)
 	{
-		if(myState == STATE.LEVEL1)
+		if(myState == STATE.LEVEL1 || myState == STATE.LEVEL2)
 		{
 			KeyInput.actionPerformed();
 		}
@@ -106,7 +107,7 @@ public class Game extends JPanel implements KeyListener,ActionListener,MouseList
 	@Override
 	public void keyPressed(KeyEvent e)
 	{
-		if(myState == STATE.LEVEL1 || myState == STATE.HOWTOPLAY || myState == STATE.DIFFICULTY)
+		if(myState == STATE.HELP || myState == STATE.DIFFICULTY ||myState == STATE.LEVEL1 ||myState == STATE.LEVEL2 )
 		{
 			KeyInput.keyPressed(e);
 		}
