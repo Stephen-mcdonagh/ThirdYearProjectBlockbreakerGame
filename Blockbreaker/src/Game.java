@@ -14,7 +14,6 @@ import javax.swing.JPanel;
 public class Game extends JPanel implements KeyListener,ActionListener,MouseListener
 {
 	
-	//private int numOfBricks = 21;
 	public static boolean running = false;  //play
 	public static Player player = new Player();  //To be removed
 	
@@ -24,11 +23,14 @@ public class Game extends JPanel implements KeyListener,ActionListener,MouseList
 	
 	public static Timer timer;
 	public static int levelOneTotalBlocks = 28;
+	public static int levelTwoTotalBlocks = 16;
 	
 	public static int gameDifficulty;
 	public static int gameScore = 0 ;
 	
-	public boolean gameOver = false;
+	public static String username;
+	
+	public static boolean gameOver = false;
 	
 	public static enum STATE
 	{
@@ -54,18 +56,22 @@ public class Game extends JPanel implements KeyListener,ActionListener,MouseList
 			timer.start();
 		}		
 	}
-	
+		
 	//Put objects onto screen
 	public void paint(Graphics g)
 	{
+		if(!isRunning() && myState == STATE.LEVEL2)
+		{
+			new Block(4,7);
+		}
+		
 		if(myState == STATE.HOME)
 		{
 			Screen.renderHome(g);
 			repaint();
 		}
 		else if(myState == STATE.HELP)
-		{
-			
+		{		
 			Screen.renderHowToPlay(g);
 			repaint();
 		}
@@ -98,9 +104,13 @@ public class Game extends JPanel implements KeyListener,ActionListener,MouseList
 
 	public void actionPerformed(ActionEvent e)
 	{
-		if(myState == STATE.LEVEL1 || myState == STATE.LEVEL2)
+		if(myState == STATE.LEVEL1 && isRunning())
 		{
-			KeyInput.actionPerformed();
+			KeyInput.actionPerformedLevel1();
+		}
+		if(myState == STATE.LEVEL2)
+		{
+			KeyInput.actionPerformedLevel2();
 		}
 	}
 
@@ -113,6 +123,10 @@ public class Game extends JPanel implements KeyListener,ActionListener,MouseList
 		}
 	}
 	
+	public static void resetGame()
+	{
+		new Game();
+	}
 	@Override
 	//had to create new method as was "skipping" state difficulty 
 	public void mousePressed(MouseEvent e) 

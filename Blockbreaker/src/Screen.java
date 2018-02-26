@@ -49,17 +49,45 @@ public class Screen
 		g.setColor(Color.WHITE);
 		g.drawString("BlockBreaker", 200, 100);
 		
-		Font fnt1 = new Font("ariel",Font.BOLD,30);
+		
+		Font fnt1 = new Font("ariel",Font.BOLD,28);
 		g.setFont(fnt1);
-		g.drawString("PLAY",PlayButton.x+70 , PlayButton.y+40);
+		
+		g.setColor(Color.RED);	
+		g.fillRect(260,150,220,50);
+		g.setColor(Color.black);		
+		g.drawString("PLAY",PlayButton.x+70 , PlayButton.y+40);		
 		g2d.draw(PlayButton);
+		
+		g.setColor(Color.green);
+		g.fillRect(260,250,220,50);
+		g.setColor(Color.black);
 		g.drawString("HIGHSCORES",HighScoresButton.x +10 , HighScoresButton.y+40);
 		g2d.draw(HighScoresButton);
+		
+		g.setColor(Color.blue);
+		g.fillRect(260,350,220,50);
+		g.setColor(Color.black);
 		g.drawString("HELP",HelpButton.x+70 , HelpButton.y+40);
 		g2d.draw(HelpButton);
 		
 	}
 	
+	//will display top scores in game
+	public static void renderHighScores(Graphics g)
+	{		
+		g.setColor(Color.black);
+		g.fillRect(0, 0, 720, 600);
+	}
+
+	//will give user instructions on how to play 
+	public static void renderHowToPlay(Graphics g)
+	{		
+		g.setColor(Color.black);
+		g.fillRect(0, 0, 720, 600);
+	}
+	
+	//puts onto screen different difficulty options for user
 	public static void renderDifficulty(Graphics g)
 	{
 		Graphics2D g2d = (Graphics2D) g ;
@@ -69,24 +97,30 @@ public class Screen
 		Font fnt0 = new Font("ariel",Font.BOLD,50);
 		g.setFont(fnt0);
 		g.setColor(Color.WHITE);
-		g.drawString("Choose Difficulty", 200, 100);
+		g.drawString("Choose Difficulty", 160, 100);
 		
-		Font fnt1 = new Font("ariel",Font.BOLD,30);
+		g.setColor(Color.RED);	
+		g.fillRect(260,150,220,50);
+		g.setColor(Color.black);	
+		Font fnt1 = new Font("ariel",Font.BOLD,28);
 		g.setFont(fnt1);
-		g.drawString("Easy",EasyButton.x+70 , EasyButton.y+40);
+		g.drawString("EASY",EasyButton.x+70 , EasyButton.y+40);
 		g2d.draw(EasyButton);
-		g.drawString("Intermediate",IntermediateButton.x +10 , IntermediateButton.y+40);
+		
+		g.setColor(Color.green);
+		g.fillRect(260,250,220,50);
+		g.setColor(Color.black);
+		g.drawString("INTERMEDIATE",IntermediateButton.x +5 , IntermediateButton.y+40);
 		g2d.draw(IntermediateButton);
-		g.drawString("Hard",HardButton.x+70 , HardButton.y+40);
+		
+		g.setColor(Color.blue);
+		g.fillRect(260,350,220,50);
+		g.setColor(Color.black);
+		g.drawString("HARD",HardButton.x+70 , HardButton.y+40);
 		g2d.draw(HardButton);
 	}
 	
-	public static void renderHowToPlay(Graphics g)
-	{		
-		g.setColor(Color.black);
-		g.fillRect(0, 0, 720, 600);
-	}
-	
+	//draws first level 
 	public static void renderLevelOne(Graphics g)
 	{
 		//background
@@ -118,6 +152,7 @@ public class Screen
 		Game.setRunning(true);
 	}
 	
+	//draws second level
 	public static void renderLevelTwo(Graphics g)
 	{
 		//background
@@ -144,9 +179,7 @@ public class Screen
 		g.setColor(Color.red);
 		g.drawString("Lives = " + Game.lives, 30, 30);
 		
-		
-		
-			
+				
 			/*Game Over
 			g.setColor(Color.RED);
 			g.setFont(new Font("serif", Font.BOLD, 30));
@@ -160,5 +193,4 @@ public class Screen
 		g.dispose();		
 		Game.setRunning(true);
 	}
-
 }

@@ -22,6 +22,7 @@ public class MouseInput
 				if(mouseY >= 150 && mouseY <= 200)
 				{
 					Game.myState = Game.STATE.DIFFICULTY;
+					ConnectionManager.askUserForName();
 				}
 			}
 		}

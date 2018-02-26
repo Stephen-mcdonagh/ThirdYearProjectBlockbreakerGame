@@ -42,9 +42,7 @@ public class Player
 	public int getBoundsRight()
 	{
 		return getPlayerXPos() +20;
-	}
-
-	
+	}	
 	//these will be then used in goLeft and goRight methods
 	
 	//similar methods can be used for the ball	
