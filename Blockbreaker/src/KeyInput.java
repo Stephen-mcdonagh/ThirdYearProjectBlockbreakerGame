@@ -169,7 +169,6 @@ public class KeyInput
 			System.exit(0);
 			//Game.resetGame();
 			//Game.myState = Game.STATE.HOME;
-
 		}
 	}
 	

@@ -144,7 +144,6 @@ public class Game extends JPanel implements KeyListener,ActionListener,MouseList
 	@Override
 	public void keyReleased(KeyEvent e)
 	{                       
-		//KeyInput.keyReleased(e);
 	}
 	
 	@Override
