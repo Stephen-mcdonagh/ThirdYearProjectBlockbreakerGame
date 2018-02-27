@@ -155,7 +155,7 @@ public class KeyInput
 		}
 		
 		//Go from level 1 to level 2 
-		if(Game.levelOneTotalBlocks == 27) // will be changed to 0 when working
+		if(Game.levelOneTotalBlocks == 0) // will be changed to 0 when working
 		{
 			System.out.println("time for level 2 ");
 			Game.myState = Game.STATE.LEVEL2;
@@ -268,7 +268,7 @@ public class KeyInput
 			//TODO: restart game, wait for user to press a button
 		}
 		
-		if(Game.levelTwoTotalBlocks ==15)
+		if(Game.levelTwoTotalBlocks ==0)
 		{
 			Game.gameOver = true;
 		}
