@@ -35,8 +35,9 @@ public class Game extends JPanel implements KeyListener,ActionListener,MouseList
 	public static enum STATE
 	{
 		HOME,
-		DIFFICULTY,
+		HIGHSCORES,
 		HELP,
+		DIFFICULTY,
 		LEVEL1,
 		LEVEL2
 	};
@@ -45,7 +46,7 @@ public class Game extends JPanel implements KeyListener,ActionListener,MouseList
 	
 	public Game()
 	{
-		new Block(4,7); //TODO: THINK problem with next level is because of this, how to fix ?	
+		new Block(4,7); 
 		addKeyListener(this);
 		addMouseListener(this);
 		setFocusable(true);
@@ -55,6 +56,16 @@ public class Game extends JPanel implements KeyListener,ActionListener,MouseList
 			timer = new Timer(gameDifficulty,this);
 			timer.start();
 		}		
+	}
+	
+	//When you lose a life, game restarts
+	public static void restartGame()
+	{
+		Ball.BallXPos = 450;
+		Ball.BallYPos = 505;
+		Ball.BallXDir = -1.0;
+		Ball.BallYDir = -1.0;
+		Player.PlayerXPos = 420;
 	}
 		
 	//Put objects onto screen
@@ -68,6 +79,11 @@ public class Game extends JPanel implements KeyListener,ActionListener,MouseList
 		if(myState == STATE.HOME)
 		{
 			Screen.renderHome(g);
+			repaint();
+		}
+		if(myState == STATE.HIGHSCORES)
+		{
+			Screen.renderHighScores(g);
 			repaint();
 		}
 		else if(myState == STATE.HELP)
@@ -104,7 +120,7 @@ public class Game extends JPanel implements KeyListener,ActionListener,MouseList
 
 	public void actionPerformed(ActionEvent e)
 	{
-		if(myState == STATE.LEVEL1 && isRunning())
+		if(myState == STATE.LEVEL1)
 		{
 			KeyInput.actionPerformedLevel1();
 		}
@@ -117,16 +133,12 @@ public class Game extends JPanel implements KeyListener,ActionListener,MouseList
 	@Override
 	public void keyPressed(KeyEvent e)
 	{
-		if(myState == STATE.HELP || myState == STATE.DIFFICULTY ||myState == STATE.LEVEL1 ||myState == STATE.LEVEL2 )
+		if(myState == STATE.HELP||myState == STATE.HIGHSCORES || myState == STATE.DIFFICULTY ||myState == STATE.LEVEL1 ||myState == STATE.LEVEL2 )
 		{
 			KeyInput.keyPressed(e);
 		}
 	}
 	
-	public static void resetGame()
-	{
-		new Game();
-	}
 	@Override
 	//had to create new method as was "skipping" state difficulty 
 	public void mousePressed(MouseEvent e) 

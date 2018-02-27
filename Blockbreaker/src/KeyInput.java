@@ -15,7 +15,7 @@ public class KeyInput
 	{
 		int key = e.getKeyCode();
 		//allows user to go back if they want
-		if(Game.myState == Game.STATE.HELP || (Game.myState == Game.STATE.DIFFICULTY))
+		if(Game.myState == Game.STATE.HELP || Game.myState == Game.STATE.DIFFICULTY|| Game.myState == Game.STATE.HIGHSCORES)
 		{
 			if(key == KeyEvent.VK_BACK_SPACE)
 			{
@@ -126,31 +126,36 @@ public class KeyInput
 		}
 		Ball.BallXPos += Ball.BallXDir;
 		Ball.BallYPos += Ball.BallYDir;
+		
 		//Bounce left boarder
 		if(Ball.BallXPos < 0)
 		{
 			Ball.BallXDir = -Ball.BallXDir;
 		}
+		
 		//Bounce top
 		if(Ball.BallYPos < 0)
 		{
 			Ball.BallYDir = -Ball.BallYDir;
 		}
+		
 		//Bounce right
 		if(Ball.BallXPos > 690)
 		{
 			Ball.BallXDir = -Ball.BallXDir;
 		}
+		
 		//bottom game should restart, player loses a life
 		if(Ball.BallYPos >550)
 		{
-			Ball.BallYDir = -Ball.BallYDir; // dont bounce back
+			//Ball.BallYDir = -Ball.BallYDir; // dont bounce back
 			Game.lives --;
-			//TODO: restart game, wait for user to press a button
+			Game.restartGame();
+			//TODO: restart method to replace ball and paddle
 		}
 		
 		//Go from level 1 to level 2 
-		if(Game.levelOneTotalBlocks == 0) // will be changed to 0 when working
+		if(Game.levelOneTotalBlocks == 27) // will be changed to 0 when working
 		{
 			System.out.println("time for level 2 ");
 			Game.myState = Game.STATE.LEVEL2;
@@ -242,24 +247,28 @@ public class KeyInput
 		{
 			Ball.BallXDir = -Ball.BallXDir;
 		}
+		
 		//Bounce top
 		if(Ball.BallYPos < 0)
 		{
 			Ball.BallYDir = -Ball.BallYDir;
 		}
+		
 		//Bounce right
 		if(Ball.BallXPos > 690)
 		{
 			Ball.BallXDir = -Ball.BallXDir;
 		}
+		
 		//bottom game should restart, player loses a life
 		if(Ball.BallYPos >550)
 		{
-			Ball.BallYDir = -Ball.BallYDir; // dont bounce back
 			Game.lives --;
+			Game.restartGame();
 			//TODO: restart game, wait for user to press a button
 		}
-		if(Game.levelTwoTotalBlocks ==0)
+		
+		if(Game.levelTwoTotalBlocks ==15)
 		{
 			Game.gameOver = true;
 		}
