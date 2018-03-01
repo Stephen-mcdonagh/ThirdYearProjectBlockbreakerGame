@@ -12,10 +12,10 @@ public class ConnectionManager
 {
 	private static String url = "jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=blockbreaker;integratedSecurity=true";
 	private static String driverName = "com.microsoft.sqlserver.jdbc.SQLServerDriver";   
-    private static Connection con = null;
+    public static Connection con = null;
     
-	private static Statement stmt = null;
-	private static ResultSet rs = null;
+	public static Statement stmt = null;
+	public static ResultSet rs = null;
 
     public static Connection getConnection()
     {
@@ -72,6 +72,7 @@ public class ConnectionManager
    //get top 5 highscores within database
     public static void readHighScore()
     {
+    	//https://stackoverflow.com/questions/27815400/retrieving-data-from-jdbc-database-into-jtable TODO
     	try 
 		{
 			con = ConnectionManager.getConnection();
@@ -96,7 +97,7 @@ public class ConnectionManager
 		}            	
     }
     
-   /* private static java.sql.Timestamp getCurrentTimeStamp() 
+    /* private static java.sql.Timestamp getCurrentTimeStamp() 
     {
 
 		java.util.Date today = new java.util.Date();

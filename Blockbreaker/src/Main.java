@@ -8,7 +8,7 @@ public class Main extends Canvas
 	public static final String TITLE = "BlockBreaker";
 	public static int HEIGHT = 720;
 	public static int WIDTH = 600;
-	
+		
 	public static void main(String [] args)
 	{ 
 		onInit();
@@ -24,5 +24,6 @@ public class Main extends Canvas
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null); //middle of screen
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}	
+	}
+	
 }

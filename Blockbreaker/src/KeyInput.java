@@ -92,7 +92,7 @@ public class KeyInput
 					
 					if(ballRect.intersects(rect))
 					{
-						Block.setBrickValue(0, i, j);
+						Block.setBlockValue(0, i, j);
 						Game.levelOneTotalBlocks--;
 						//different score depending on what the user chooses
 						if(MouseInput.difficultyChoice == 1)
@@ -151,7 +151,6 @@ public class KeyInput
 			//Ball.BallYDir = -Ball.BallYDir; // dont bounce back
 			Game.lives --;
 			Game.restartGame();
-			//TODO: restart method to replace ball and paddle
 		}
 		
 		//Go from level 1 to level 2 
@@ -172,7 +171,6 @@ public class KeyInput
 			ConnectionManager.addNewEntryToDatabase(Game.gameScore,Game.username);
 			ConnectionManager.readHighScore();
 			System.exit(0);
-			//Game.resetGame();
 			//Game.myState = Game.STATE.HOME;
 		}
 	}
@@ -204,7 +202,7 @@ public class KeyInput
 					
 					if(ballRect.intersects(rect))
 					{
-						Block.setBrickValue(0, i, j);
+						Block.setBlockValue(0, i, j);
 						Game.levelTwoTotalBlocks--;
 						//different score depending on what the user chooses
 						if(MouseInput.difficultyChoice == 1)
@@ -265,7 +263,6 @@ public class KeyInput
 		{
 			Game.lives --;
 			Game.restartGame();
-			//TODO: restart game, wait for user to press a button
 		}
 		
 		if(Game.levelTwoTotalBlocks ==0)
@@ -278,7 +275,6 @@ public class KeyInput
 			ConnectionManager.addNewEntryToDatabase(Game.gameScore,Game.username);
 			ConnectionManager.readHighScore();
 			System.exit(0);
-			//Game.resetGame();
 			//Game.myState = Game.STATE.HOME;
 		}
 	}

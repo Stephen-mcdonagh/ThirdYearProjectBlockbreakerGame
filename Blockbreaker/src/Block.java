@@ -73,7 +73,7 @@ public class Block
 					}
 				}
 				else if(i == 1)
-					setBrickValue(0, 1, j);
+					setBlockValue(0, 1, j);
 				if(i == 2 && ( j == 2 || j == 3 || j == 4))
 				{
 					if(blocks[i][j] > 0)
@@ -87,7 +87,7 @@ public class Block
 					}
 				}
 				else if(i == 2)
-					setBrickValue(0, 2, j);
+					setBlockValue(0, 2, j);
 				if(i == 3 && (j == 3))
 				{
 					if(blocks[i][j] > 0)
@@ -101,13 +101,13 @@ public class Block
 					}
 				}
 				else if(i == 3)
-					setBrickValue(0, 3, j);
+					setBlockValue(0, 3, j);
 				
 			}
 		}
 	}
 	
-	public static void setBrickValue(int value, int row, int col)
+	public static void setBlockValue(int value, int row, int col)
 	{
 		blocks[row][col] = value;		
 	}

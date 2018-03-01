@@ -26,6 +26,18 @@ public class MouseInput
 				}
 			}
 		}
+		//Highscores pressed
+		if (Game.myState == Game.STATE.HOME)
+		{
+			if (mouseX >= 260 && mouseX <= 260 +220)
+			{
+				if(mouseY >= 250 && mouseY <= 300)
+				{
+					Game.myState = Game.STATE.HIGHSCORES;
+					Table.showTable();
+				}
+			}
+		}
 		
 		//Help pressed
 		if (Game.myState == Game.STATE.HOME)
@@ -38,9 +50,7 @@ public class MouseInput
 				}
 			}
 		}
-		
-		//TODO: need to continue this for high score sections
-	
+			
 	}
 	public static void mousePressedDifficulty(MouseEvent e) 
 	{

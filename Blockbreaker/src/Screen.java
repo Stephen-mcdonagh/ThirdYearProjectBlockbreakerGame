@@ -8,6 +8,10 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+
+import javafx.scene.control.TableColumn;
 public class Screen 
 {
 	public static Rectangle PlayButton = new Rectangle(260,150,220,50);
