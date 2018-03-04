@@ -4,12 +4,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.LinkedList;
+
 
 import javax.swing.JOptionPane;
 
 
 public class ConnectionManager 
 {
+	//url in config
 	private static String url = "jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=blockbreaker;integratedSecurity=true";
 	private static String driverName = "com.microsoft.sqlserver.jdbc.SQLServerDriver";   
     public static Connection con = null;
@@ -70,19 +73,21 @@ public class ConnectionManager
     
     }
    //get top 5 highscores within database
-    public static void readHighScore()
+    public static LinkedList<String> readHighScore()
     {
-    	//https://stackoverflow.com/questions/27815400/retrieving-data-from-jdbc-database-into-jtable TODO
+    	LinkedList<String> mylist = new LinkedList<String>();
     	try 
-		{
+    	{
 			con = ConnectionManager.getConnection();
 			stmt = con.createStatement();
 			
 		    String queryString = "SELECT TOP (5) [username] , [score] FROM [blockbreaker].[dbo].[highscores] ORDER BY score DESC";
 		    rs = stmt.executeQuery(queryString);
-		    while (rs.next()) 
+		    while (rs.next() ) 
 			{
-		    	System.out.println(rs.getString(1)+ " " + rs.getString(2));
+		    	mylist.add(rs.getString(1));
+		    	mylist.add(rs.getString(2));
+		    	//System.out.println(rs.getString(1)+ " " + rs.getString(2));
 			}
 		} 
 		catch (Exception e) 
@@ -94,7 +99,9 @@ public class ConnectionManager
 			if (rs != null) try { rs.close(); } catch(Exception e) {}  
 	        if (stmt != null) try { stmt.close(); } catch(Exception e) {}  
 	        if (con != null) try { con.close(); } catch(Exception e) {} 
-		}            	
+		}
+	    return mylist;
+
     }
     
     /* private static java.sql.Timestamp getCurrentTimeStamp() 

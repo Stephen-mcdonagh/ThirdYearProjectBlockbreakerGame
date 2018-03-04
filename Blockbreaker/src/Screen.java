@@ -3,15 +3,10 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.util.LinkedList;
+;
 
-import javax.imageio.ImageIO;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 
-import javafx.scene.control.TableColumn;
 public class Screen 
 {
 	public static Rectangle PlayButton = new Rectangle(260,150,220,50);
@@ -22,23 +17,7 @@ public class Screen
 	public static Rectangle IntermediateButton = new Rectangle(260,250,220,50);
 	public static Rectangle HardButton = new Rectangle(260,350,220,50);
 	
-	//private static BufferedImage image;
 	
-	/*public static BufferedImage displayBackground()
-	{
-		//TODO: fix problem - not working 
-		try 
-		{
-			BufferedImage image = ImageIO.read(new File("res/projectBackground.png"));
-			System.out.println("image read");
-			return image;
-		} catch (IOException e) 
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}*/		
 	public static void renderHome(Graphics g)
 	{
 		Graphics2D g2d = (Graphics2D) g ;
@@ -80,8 +59,47 @@ public class Screen
 	//will display top scores in game
 	public static void renderHighScores(Graphics g)
 	{		
+		int y = 200;
+    	LinkedList<String> myHighScores = new LinkedList<String>();
 		g.setColor(Color.black);
 		g.fillRect(0, 0, 720, 600);
+		
+		Font fnt0 = new Font("ariel",Font.BOLD,50);
+		g.setFont(fnt0);
+		g.setColor(Color.WHITE);
+		g.drawString("Highscores", 200, 100);
+		
+		Font fnt1 = new Font("ariel",Font.BOLD,28);
+		g.setFont(fnt1);
+		g.setColor(Color.WHITE);
+		myHighScores = ConnectionManager.readHighScore();
+		g.drawString("NAME", 200, 150);
+		g.drawString("SCORE", 400, 150);
+		
+		g.drawRect(150, 112, 200, 50);
+		g.drawRect(150, 160, 200, 50);
+		g.drawRect(150, 212, 200, 50);
+		g.drawRect(150, 264, 200, 50);
+		g.drawRect(150, 316, 200, 50);
+		g.drawRect(150, 368, 200, 50);
+		
+		g.drawRect(350, 112, 200, 50);
+		g.drawRect(350, 160, 200, 50);
+		g.drawRect(350, 212, 200, 50);
+		g.drawRect(350, 264, 200, 50);
+		g.drawRect(350, 316, 200, 50);
+		g.drawRect(350, 368, 200, 50);
+		int number =0;
+		while(number < myHighScores.size()) 
+		{
+			String first = myHighScores.get(number);
+			number++;
+			String second = myHighScores.get(number);
+			number++;
+			g.drawString(first, 200, y);
+			g.drawString(second, 400, y);
+			y = y+50;	  
+		}		
 	}
 
 	//will give user instructions on how to play 

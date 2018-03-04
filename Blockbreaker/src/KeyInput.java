@@ -1,9 +1,5 @@
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 public class KeyInput
 {	
