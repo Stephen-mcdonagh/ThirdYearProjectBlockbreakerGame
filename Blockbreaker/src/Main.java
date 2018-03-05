@@ -24,6 +24,5 @@ public class Main extends Canvas
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null); //middle of screen
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}
-	
+	}	
 }

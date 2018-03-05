@@ -9,13 +9,11 @@ import javax.swing.Timer;
 
 
 import javax.swing.JPanel;
-//HELLO there!!!!
 @SuppressWarnings("serial")
 public class Game extends JPanel implements KeyListener,ActionListener,MouseListener
 {
 	
 	public static boolean running = false;  //play
-	public static Player player = new Player();  //To be removed
 	
 	public static int score1 = 0;
 	public static int lives = 3;
@@ -66,6 +64,24 @@ public class Game extends JPanel implements KeyListener,ActionListener,MouseList
 		Ball.BallXDir = -1.0;
 		Ball.BallYDir = -1.0;
 		Player.PlayerXPos = 420;
+	}
+	
+	public static int loseLife()
+	{
+		return lives--;
+	}
+	
+	public static int giveUserBonus()
+	{
+		if(lives == 3)
+		{
+			gameScore = gameScore +200;
+		}
+		if(lives == 2)
+		{
+			gameScore = gameScore + 100;
+		}
+		return gameScore;
 	}
 		
 	//Put objects onto screen

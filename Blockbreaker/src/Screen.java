@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.LinkedList;
-;
 
 
 public class Screen 
@@ -104,9 +103,54 @@ public class Screen
 
 	//will give user instructions on how to play 
 	public static void renderHowToPlay(Graphics g)
-	{		
-		g.setColor(Color.black);
-		g.fillRect(0, 0, 720, 600);
+	{				
+			g.setColor(Color.black);
+			g.fillRect(0, 0, 720, 600);
+			
+			Font fnt0 = new Font("ariel",Font.BOLD,50);
+			g.setFont(fnt0);
+			g.setColor(Color.WHITE);
+			g.drawString("How to play", 180, 100);
+			
+			Font fnt1 = new Font("ariel",Font.BOLD,30);
+			g.setFont(fnt1);
+			g.setColor(Color.RED);
+			g.drawString("Objective", 90, 150);
+			
+			Font fnt2 = new Font("ariel",Font.BOLD,15);
+			g.setFont(fnt2);
+			g.setColor(Color.WHITE);
+			g.drawString("The aim of the game is to destroy all the blocks coloured yellow without losing all", 90, 180);
+			g.drawString("the lives by missing the ball and allowing it to hit the bottom. Destroying all the ", 90, 200);
+			g.drawString("blocks will take you to level 2 with the same amount of blocks. Destroying all the", 90, 220);
+			g.drawString("level 2 blocks means you have completed the game and your high score is recorded ", 90, 240);
+			
+			
+			g.setFont(fnt1);	
+			g.setColor(Color.RED);
+			g.drawString("Controls", 90, 280);	
+			
+			
+			g.setFont(fnt2);
+			g.setColor(Color.WHITE);
+			g.drawString("To begin the game click “PLAY” with your mouse and enter your name.", 90, 300);
+			g.drawString("Then choose your desired difficulty and press and key to start.", 90, 320);
+			g.drawString("Left key (<-) moves the paddle left and the right key (->) moves the paddle right.", 90, 340);
+
+			
+			g.setFont(fnt1);	
+			g.setColor(Color.RED);
+			g.drawString("Score", 90, 380);	
+			
+			g.setFont(fnt2);
+			g.setColor(Color.WHITE);
+			g.drawString("The score is calulated based on the difficulty and how many blocks a user destroys.", 90, 400);
+			g.drawString("In easy, each block that is destroyed counts for 10 points, 15 for medium and ", 90, 420);
+			g.drawString("20 for hard. If a user completes the game with 3 lives to spare they are", 90, 440);
+			g.drawString("given an extra 200 points and 100 points if 2 lives to spare", 90, 460);
+
+			
+		
 	}
 	
 	//puts onto screen different difficulty options for user

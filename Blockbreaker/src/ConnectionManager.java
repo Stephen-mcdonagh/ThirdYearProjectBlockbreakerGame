@@ -9,10 +9,8 @@ import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
 
-
 public class ConnectionManager 
 {
-	//url in config
 	private static String url = "jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=blockbreaker;integratedSecurity=true";
 	private static String driverName = "com.microsoft.sqlserver.jdbc.SQLServerDriver";   
     public static Connection con = null;
@@ -31,7 +29,7 @@ public class ConnectionManager
             } 
             catch (SQLException ex) 
             {
-                // log an exception. fro example:
+                // log an exception. for example:
                 System.out.println("Failed to create the database connection."); 
             }
         } 
@@ -46,17 +44,17 @@ public class ConnectionManager
     //adds a new score to the database
     public static void addNewEntryToDatabase(int highscore,String username)
     {
+    	Config config = new Config();
     	try 
 		{
 			con = ConnectionManager.getConnection();
 			stmt = con.createStatement();
 			
-		    String queryString = "insert into dbo.highscores (username, score) values (?,?)";
+		    String queryString = config.getProperty("insertQuery");
 
 		    PreparedStatement preparedStatement = con.prepareStatement(queryString);
 		    preparedStatement.setString(1,username);
 		    preparedStatement.setInt(2,highscore);
-		 //preparedStatement.setTimestamp(3, getCurrentTimeStamp());
 		    // execute insert SQL stetement
 		    preparedStatement .executeUpdate();
 		} 
@@ -75,13 +73,14 @@ public class ConnectionManager
    //get top 5 highscores within database
     public static LinkedList<String> readHighScore()
     {
+    	Config config = new Config();
     	LinkedList<String> mylist = new LinkedList<String>();
     	try 
     	{
 			con = ConnectionManager.getConnection();
 			stmt = con.createStatement();
 			
-		    String queryString = "SELECT TOP (5) [username] , [score] FROM [blockbreaker].[dbo].[highscores] ORDER BY score DESC";
+		    String queryString = config.getProperty("highScoreQuery");
 		    rs = stmt.executeQuery(queryString);
 		    while (rs.next() ) 
 			{
@@ -103,13 +102,6 @@ public class ConnectionManager
 	    return mylist;
 
     }
-    
-    /* private static java.sql.Timestamp getCurrentTimeStamp() 
-    {
-
-		java.util.Date today = new java.util.Date();
-		return new java.sql.Timestamp(today.getTime());
-	}*/
     
     //Asks user to input name, so appropriate name can be added to database
     public static void askUserForName()

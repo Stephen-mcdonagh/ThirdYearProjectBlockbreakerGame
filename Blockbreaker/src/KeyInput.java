@@ -45,18 +45,6 @@ public class KeyInput
 					player.goLeft();
 				}
 			}
-			
-			
-			//Release new ball feature using B key ,
-			/*if(Game.score >200)
-			{
-				if(key == KeyEvent.VK_B)
-				{
-				// release a new ball 
-				//press button b
-				Game.numOfBalls ++ ;		
-				}
-			}*/
 		}
 	}
 
@@ -83,8 +71,6 @@ public class KeyInput
 					
 					Rectangle rect = new Rectangle(brickX, brickY, brickWidth, brickHeight);
 					Rectangle ballRect = new Rectangle(Ball.BallXPos, Ball.BallYPos, 20, 20);
-					//No need for this line
-					//Rectangle brickRect = rect;
 					
 					if(ballRect.intersects(rect))
 					{
@@ -144,8 +130,7 @@ public class KeyInput
 		//bottom game should restart, player loses a life
 		if(Ball.BallYPos >550)
 		{
-			//Ball.BallYDir = -Ball.BallYDir; // dont bounce back
-			Game.lives --;
+			Game.loseLife();
 			Game.restartGame();
 		}
 		
@@ -193,8 +178,6 @@ public class KeyInput
 					
 					Rectangle rect = new Rectangle(brickX, brickY, brickWidth, brickHeight);
 					Rectangle ballRect = new Rectangle(Ball.BallXPos, Ball.BallYPos, 20, 20);
-					//No need for this line
-					//Rectangle brickRect = rect;
 					
 					if(ballRect.intersects(rect))
 					{
@@ -257,21 +240,22 @@ public class KeyInput
 		//bottom game should restart, player loses a life
 		if(Ball.BallYPos >550)
 		{
-			Game.lives --;
+			Game.loseLife();
 			Game.restartGame();
 		}
-		
+		//no more levals left
 		if(Game.levelTwoTotalBlocks ==0)
 		{
+			Game.giveUserBonus();
 			Game.gameOver = true;
 		}
 		//Game over 
 		if(Game.lives ==0 || Game.gameOver ==true)
 		{
+			Game.gameOver =true;
 			ConnectionManager.addNewEntryToDatabase(Game.gameScore,Game.username);
 			ConnectionManager.readHighScore();
 			System.exit(0);
-			//Game.myState = Game.STATE.HOME;
 		}
 	}
 }

@@ -34,7 +34,6 @@ public class MouseInput
 				if(mouseY >= 250 && mouseY <= 300)
 				{
 					Game.myState = Game.STATE.HIGHSCORES;
-					//Table.showTable();
 				}
 			}
 		}

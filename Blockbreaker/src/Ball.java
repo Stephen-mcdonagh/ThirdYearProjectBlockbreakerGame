@@ -1,6 +1,5 @@
 public class Ball 
 {
-	//Game game = new Game();
 	public static int BallXPos = 450;
 	public static int BallYPos = 505;
 	
