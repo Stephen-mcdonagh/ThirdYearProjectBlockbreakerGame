@@ -9,11 +9,6 @@ public class MouseInput
 		int mouseX = e.getX(); //x value of mouse
 		int mouseY = e.getY(); //y value of mouse
 		
-		/*public static Rectangle PlayButton = new Rectangle(280,150,220,50);
-		public static Rectangle HighScoresButton = new Rectangle(280,250,220,50);
-		public static Rectangle HelpButton = new Rectangle(280,350,220,50);
-		*/
-		
 		//Play pressed
 		if (Game.myState == Game.STATE.HOME)
 		{
@@ -48,8 +43,7 @@ public class MouseInput
 					Game.myState = Game.STATE.HELP;
 				}
 			}
-		}
-			
+		}			
 	}
 	public static void mousePressedDifficulty(MouseEvent e) 
 	{

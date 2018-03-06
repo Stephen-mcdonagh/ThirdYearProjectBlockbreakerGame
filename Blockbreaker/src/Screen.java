@@ -125,12 +125,10 @@ public class Screen
 			g.drawString("blocks will take you to level 2 with the same amount of blocks. Destroying all the", 90, 220);
 			g.drawString("level 2 blocks means you have completed the game and your high score is recorded ", 90, 240);
 			
-			
 			g.setFont(fnt1);	
 			g.setColor(Color.RED);
 			g.drawString("Controls", 90, 280);	
-			
-			
+					
 			g.setFont(fnt2);
 			g.setColor(Color.WHITE);
 			g.drawString("To begin the game click “PLAY” with your mouse and enter your name.", 90, 300);
@@ -244,17 +242,6 @@ public class Screen
 		//Lives
 		g.setColor(Color.red);
 		g.drawString("Lives = " + Game.lives, 30, 30);
-		
-				
-			/*Game Over
-			g.setColor(Color.RED);
-			g.setFont(new Font("serif", Font.BOLD, 30));
-			g.drawString("Game Over!!, Score is " + Game.gameScore, 190, 300);
-			
-			//Restart
-			g.setFont(new Font("serif", Font.BOLD, 30));
-			g.drawString("Press Enter to restart", 190, 300);
-			*/
 	
 		g.dispose();		
 		Game.setRunning(true);

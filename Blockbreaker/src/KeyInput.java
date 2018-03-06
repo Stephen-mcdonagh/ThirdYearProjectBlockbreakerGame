@@ -139,9 +139,7 @@ public class KeyInput
 		{
 			System.out.println("time for level 2 ");
 			Game.myState = Game.STATE.LEVEL2;
-			Ball.BallXPos = 450;
-			Ball.BallYPos = 505;
-			Player.setPlayerXPos(420);		
+			Game.restartGame();		
 			Game.setRunning(false);
 		}
 		
@@ -152,7 +150,6 @@ public class KeyInput
 			ConnectionManager.addNewEntryToDatabase(Game.gameScore,Game.username);
 			ConnectionManager.readHighScore();
 			System.exit(0);
-			//Game.myState = Game.STATE.HOME;
 		}
 	}
 	

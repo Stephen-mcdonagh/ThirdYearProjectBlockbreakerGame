@@ -101,8 +101,7 @@ public class Block
 					}
 				}
 				else if(i == 3)
-					setBlockValue(0, 3, j);
-				
+					setBlockValue(0, 3, j);				
 			}
 		}
 	}
