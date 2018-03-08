@@ -15,7 +15,6 @@ public class KeyInput
 		{
 			if(key == KeyEvent.VK_BACK_SPACE)
 			{
-				System.out.print("back pressed ");
 				Game.myState = Game.STATE.HOME;
 			}			
 		}
@@ -137,7 +136,6 @@ public class KeyInput
 		//Go from level 1 to level 2 
 		if(Game.levelOneTotalBlocks == 0) // will be changed to 0 when working
 		{
-			System.out.println("time for level 2 ");
 			Game.myState = Game.STATE.LEVEL2;
 			Game.restartGame();		
 			Game.setRunning(false);

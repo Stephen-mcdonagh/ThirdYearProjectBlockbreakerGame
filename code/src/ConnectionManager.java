@@ -108,6 +108,5 @@ public class ConnectionManager
     {
     	String input = JOptionPane.showInputDialog(null,"Please Enter your name");
     	Game.username = input;
-    	System.out.println(input);
     }   
 }
