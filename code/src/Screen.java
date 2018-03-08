@@ -110,7 +110,7 @@ public class Screen
 			Font fnt0 = new Font("ariel",Font.BOLD,50);
 			g.setFont(fnt0);
 			g.setColor(Color.WHITE);
-			g.drawString("How to play", 180, 100);
+			g.drawString("How to play", 200, 100);
 			
 			Font fnt1 = new Font("ariel",Font.BOLD,30);
 			g.setFont(fnt1);
@@ -143,7 +143,7 @@ public class Screen
 			g.setFont(fnt2);
 			g.setColor(Color.WHITE);
 			g.drawString("The score is calulated based on the difficulty and how many blocks a user destroys.", 90, 400);
-			g.drawString("In easy, each block that is destroyed counts for 10 points, 15 for medium and ", 90, 420);
+			g.drawString("In easy, each block that is destroyed counts for 10 points, 15 for intermediate and ", 90, 420);
 			g.drawString("20 for hard. If a user completes the game with 3 lives to spare they are", 90, 440);
 			g.drawString("given an extra 200 points and 100 points if 2 lives to spare", 90, 460);
 

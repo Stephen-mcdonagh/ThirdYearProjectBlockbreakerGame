@@ -66,11 +66,13 @@ public class Game extends JPanel implements KeyListener,ActionListener,MouseList
 		Player.PlayerXPos = 420;
 	}
 	
+	//removes a life from user
 	public static int loseLife()
 	{
 		return lives--;
 	}
 	
+	//User is rewarded with bonus for finishing game with 3 or 2 lives 
 	public static int giveUserBonus()
 	{
 		if(lives == 3)
